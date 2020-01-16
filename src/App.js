@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+
+const Progress = ({done}) => {
+  const [style, setStyle] = useState({});
+
+  setTimeout(() => {
+    const newStyle = {
+      opacity: 1,
+      width: `${done}%`
+    }
+
+    setStyle(newStyle);
+  }, 200)
+
+  return (
+		<div className="progress">
+			<div className="progress-done" style={style}>
+				{done}%
+			</div>
+		</div>
+	)
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>React Progress Bar using hook</h1>
+		    <Progress done="50"/>
+        <Progress done="60"/>
+        <Progress done="70"/>
+        <Progress done="100"/>
     </div>
   );
 }
